@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QCM Français</title>
+    <style>
+        body {
+            background-image: url('blag.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+        #quiz-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+        }
+        #question {
+            font-size: 1.5em;
+        }
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: lightgray;
+        }
+        #result-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #result-popup button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        #result-popup button:hover {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <div id="question"></div>
+        <div id="options"></div>
+    </div>
+
+    <div id="result-popup">
+        <p id="result-text"></p>
+        <button onclick="restartQuiz()">Rejouer</button>
+    </div>
+
+    <script>
+const questions = [
+    { question: "Trouve la bonne orthographe", options: ["une carte", "une karte", "une carth"], correct: "une carte" },
+    { question: "Trouve la bonne orthographe", options: ["montrer", "montrrer", "monter"], correct: "montrer" },
+    { question: "Trouve la bonne orthographe", options: ["un enfant", "un enfan", "un enfantt"], correct: "un enfant" },
+    { question: "Trouve la bonne orthographe", options: ["postal", "postale", "postall"], correct: "postal" },
+    { question: "Trouve la bonne orthographe", options: ["l'Italie", "l'Itali", "l'Italiee"], correct: "l'Italie" },
+    { question: "Trouve la bonne orthographe", options: ["une tradition", "une tradission", "une traditiion"], correct: "une tradition" },
+    { question: "Trouve la bonne orthographe", options: ["la culture", "la culturr", "la cultur"], correct: "la culture" },
+    { question: "Trouve la bonne orthographe", options: ["devant", "devent", "devannt"], correct: "devant" },
+    { question: "Trouve la bonne orthographe", options: ["différent", "diférent", "differant"], correct: "différent" },
+    { question: "Trouve la bonne orthographe", options: ["l’histoire", "l'histoir", "l’histoirr"], correct: "l’histoire" },
+    { question: "Trouve la bonne orthographe", options: ["un drapeau", "un drappau", "un drapo"], correct: "un drapeau" },
+    { question: "Trouve la bonne orthographe", options: ["le nord", "le nor", "le norde"], correct: "le nord" },
+    { question: "Trouve la bonne orthographe", options: ["décider", "decider", "décidder"], correct: "décider" },
+    { question: "Trouve la bonne orthographe", options: ["beau", "bo", "beaux"], correct: "beau" },
+    { question: "Trouve la bonne orthographe", options: ["la Suède", "la Swède", "la Suede"], correct: "la Suède" },
+    { question: "Trouve la bonne orthographe", options: ["une légende", "une légend", "une legende"], correct: "une légende" },
+    { question: "Trouve la bonne orthographe", options: ["le froid", "le frois", "le froiid"], correct: "le froid" },
+    { question: "Trouve la bonne orthographe", options: ["dehors", "déhors", "dehor"], correct: "dehors" },
+    { question: "Trouve la bonne orthographe", options: ["raconter", "raconterr", "racconter"], correct: "raconter" },
+    { question: "Trouve la bonne orthographe", options: ["un fjord", "un fjjord", "un fjorde"], correct: "un fjord" },
+    { question: "Trouve la bonne orthographe", options: ["le loup", "le lou", "le loupe"], correct: "le loup" },
+    { question: "Trouve la bonne orthographe", options: ["petit", "petitt", "peti"], correct: "petit" },
+    { question: "Trouve la bonne orthographe", options: ["apporter", "apporterr", "aporter"], correct: "apporter" },
+    { question: "Trouve la bonne orthographe", options: ["un groupe", "un groupp", "un grouppe"], correct: "un groupe" },
+    { question: "Trouve la bonne orthographe", options: ["une photo", "une photeau", "une photto"], correct: "une photo" },
+    { question: "Trouve la bonne orthographe", options: ["chasser", "chasserr", "chasé"], correct: "chasser" },
+    { question: "Trouve la bonne orthographe", options: ["une espèce", "une éspèce", "une espéce"], correct: "une espèce" },
+    { question: "Trouve la bonne orthographe", options: ["une proie", "une proye", "une prooi"], correct: "une proie" },
+    { question: "Trouve la bonne orthographe", options: ["présent", "présan", "présentt"], correct: "présent" },
+    { question: "Trouve la bonne orthographe", options: ["l’hémisphère", "l'hemisphère", "l’hémissphère"], correct: "l’hémisphère" },
+    { question: "Trouve la bonne orthographe", options: ["un continent", "un contineant", "un contien"], correct: "un continent" },
+    { question: "Trouve la bonne orthographe", options: ["grand", "grrand", "grend"], correct: "grand" },
+    { question: "Trouve la bonne orthographe", options: ["nouveau", "nouvaux", "nouveaux"], correct: "nouveau" },
+    { question: "Trouve la bonne orthographe", options: ["aimer", "aimmer", "émé"], correct: "aimer" },
+    { question: "Trouve la bonne orthographe", options: ["beaucoup", "bocoup", "beaucou"], correct: "beaucoup" },
+    { question: "Trouve la bonne orthographe", options: ["maintenant", "maintenent", "maintenannt"], correct: "maintenant" },
+    { question: "Trouve la bonne orthographe", options: ["annoncer", "anonsser", "anonce"], correct: "annoncer" },
+    { question: "Trouve la bonne orthographe", options: ["prochain", "prochin", "prochenn"], correct: "prochain" },
+    { question: "Trouve la bonne orthographe", options: ["autour", "otor", "autorre"], correct: "autour" },
+    { question: "Trouve la bonne orthographe", options: ["travailler", "travailerr", "travailler"], correct: "travailler" },
+    { question: "Trouve la bonne orthographe", options: ["une montagne", "une montaigne", "une montane"], correct: "une montagne" },
+    { question: "Trouve la bonne orthographe", options: ["plus", "pllus", "plu"], correct: "plus" },
+    { question: "Trouve la bonne orthographe", options: ["haut", "aut", "hauttt"], correct: "haut" },
+    { question: "Trouve la bonne orthographe", options: ["se situer", "ce situer", "se situerr"], correct: "se situer" },
+    { question: "Trouve la bonne orthographe", options: ["le Tibet", "le Thibet", "le Tibé"], correct: "le Tibet" },
+    { question: "Trouve la bonne orthographe", options: ["plein", "plien", "plin"], correct: "plein" },
+    { question: "Trouve la bonne orthographe", options: ["rêver", "rever", "révér"], correct: "rêver" },
+    { question: "Trouve la bonne orthographe", options: ["célèbre", "célebre", "celèbre"], correct: "célèbre" },
+    { question: "Trouve la bonne orthographe", options: ["grimper", "grimperr", "grimper"], correct: "grimper" },
+    { question: "Trouve la bonne orthographe", options: ["dangereux", "dangéreux", "dangerue"], correct: "dangereux" },
+    { question: "Trouve la bonne orthographe", options: ["fêter", "féter", "feter"], correct: "fêter" },
+    { question: "Trouve la bonne orthographe", options: ["décorer", "decorer", "décoorer"], correct: "décorer" },
+    { question: "Trouve la bonne orthographe", options: ["déjà", "deja", "déja"], correct: "déjà" },
+    { question: "Trouve la bonne orthographe", options: ["le lièvre", "le lievre", "le lyièvre"], correct: "le lièvre" },
+    { question: "Trouve la bonne orthographe", options: ["la Chine", "la Chinne", "la Chiné"], correct: "la Chine" },
+    { question: "Trouve la bonne orthographe", options: ["préparer", "preparrer", "préparrer"], correct: "préparer" },
+    { question: "Trouve la bonne orthographe", options: ["là-bas", "la-bas", "l’a-bas"], correct: "là-bas" },
+    { question: "Trouve la bonne orthographe", options: ["un pétard", "un petard", "un petar"], correct: "un pétard" },
+    { question: "Trouve la bonne orthographe", options: ["le défilé", "le défiler", "le defilé"], correct: "le défilé" },
+    { question: "Trouve la bonne orthographe", options: ["drôle", "drole", "drrôle"], correct: "drôle" }
+];
+
+
+        // Variables globales
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedQuestions = [];
+
+        // Sélectionne 10 questions aléatoires
+        function selectRandomQuestions() {
+            const shuffled = [...questions].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, 10);
+        }
+
+        // Affiche une question
+        function displayQuestion() {
+            if (currentQuestionIndex >= selectedQuestions.length) {
+                showResult();
+                return;
+            }
+
+            const currentQuestion = selectedQuestions[currentQuestionIndex];
+            document.getElementById("question").textContent = currentQuestion.question;
+
+            // Mélange les options
+            const shuffledOptions = [...currentQuestion.options].sort(() => 0.5 - Math.random());
+
+            const optionsContainer = document.getElementById("options");
+            optionsContainer.innerHTML = ""; // Clear previous options
+
+            shuffledOptions.forEach(option => {
+                const button = document.createElement("button");
+                button.textContent = option;
+                button.className = "option";
+                button.onclick = () => checkAnswer(option, currentQuestion.correct);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        // Vérifie la réponse et affiche une popup si incorrecte
+        function checkAnswer(selectedOption, correctOption) {
+            if (selectedOption === correctOption) {
+                score++;
+            } else {
+                alert(`Incorrect ! La bonne réponse était : "${correctOption}"`);
+            }
+            currentQuestionIndex++;
+            displayQuestion();
+        }
+
+        // Affiche le résultat final
+        function showResult() {
+            document.getElementById("quiz-container").style.display = "none";
+            const resultPopup = document.getElementById("result-popup");
+            resultPopup.style.display = "block";
+            document.getElementById("result-text").textContent = `Votre score : ${score} / ${selectedQuestions.length}`;
+        }
+
+        // Redémarre le quiz
+        function restartQuiz() {
+            score = 0;
+            currentQuestionIndex = 0;
+            selectedQuestions = selectRandomQuestions();
+            document.getElementById("quiz-container").style.display = "block";
+            document.getElementById("result-popup").style.display = "none";
+            displayQuestion();
+        }
+
+        // Initialise le quiz
+        selectedQuestions = selectRandomQuestions();
+        displayQuestion();
+    </script>
+</body>
+</html>
