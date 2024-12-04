@@ -80,14 +80,15 @@
     <div id="result-popup">
         <p id="result-text"></p>
         <button onclick="restartQuiz()">Rejouer</button>
+        <button id="redirect-button" style="display: none;" onclick="redirectToGame()">Jouer à Puissance Quatre</button>
     </div>
 
     <script>
 const questions = [
     { question: "Trouve la bonne orthographe", options: ["une carte", "une karte", "une carth"], correct: "une carte" },
-    { question: "Trouve la bonne orthographe", options: ["montrer", "montrrer", "monter"], correct: "montrer" },
+    { question: "Trouve la bonne orthographe", options: ["montrer", "montrrer", "montrér"], correct: "montrer" },
     { question: "Trouve la bonne orthographe", options: ["un enfant", "un enfan", "un enfantt"], correct: "un enfant" },
-    { question: "Trouve la bonne orthographe", options: ["postal", "postale", "postall"], correct: "postal" },
+    { question: "Trouve la bonne orthographe", options: ["postal", "paustale", "postall"], correct: "postal" },
     { question: "Trouve la bonne orthographe", options: ["l'Italie", "l'Itali", "l'Italiee"], correct: "l'Italie" },
     { question: "Trouve la bonne orthographe", options: ["une tradition", "une tradission", "une traditiion"], correct: "une tradition" },
     { question: "Trouve la bonne orthographe", options: ["la culture", "la culturr", "la cultur"], correct: "la culture" },
@@ -145,8 +146,6 @@ const questions = [
     { question: "Trouve la bonne orthographe", options: ["le défilé", "le défiler", "le defilé"], correct: "le défilé" },
     { question: "Trouve la bonne orthographe", options: ["drôle", "drole", "drrôle"], correct: "drôle" }
 ];
-
-
         // Variables globales
         let currentQuestionIndex = 0;
         let score = 0;
@@ -200,6 +199,11 @@ const questions = [
             const resultPopup = document.getElementById("result-popup");
             resultPopup.style.display = "block";
             document.getElementById("result-text").textContent = `Votre score : ${score} / ${selectedQuestions.length}`;
+
+            // Affiche le bouton pour Puissance Quatre si score >= 9
+            if (score >= 9) {
+                document.getElementById("redirect-button").style.display = "inline-block";
+            }
         }
 
         // Redémarre le quiz
@@ -210,6 +214,11 @@ const questions = [
             document.getElementById("quiz-container").style.display = "block";
             document.getElementById("result-popup").style.display = "none";
             displayQuestion();
+        }
+
+        // Redirige vers la page Puissance Quatre
+        function redirectToGame() {
+            window.location.href = "puissancequatre.html";
         }
 
         // Initialise le quiz
