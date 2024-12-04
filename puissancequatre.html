@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puissance 4 - Joueur vs Ordinateur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url('fond.png'); /* Chemin de votre image */
+            background-size: cover; /* L'image couvre tout l'écran */
+            background-position: center; /* Centrer l'image */
+            background-attachment: fixed; /* L'image reste fixe même en scrollant */
+            color: white; /* Texte blanc pour contraste */
+            min-height: 100vh; /* S'assure que le fond couvre tout l'écran */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 4vw;
+            margin: 10px 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* 7 colonnes de taille égale */
+            gap: 1vw;
+            justify-content: center;
+            width: 90vw; /* La grille prend 90% de la largeur de l'écran */
+            max-width: 600px; /* Limiter la taille maximale */
+        }
+        .cell {
+            width: 100%; /* La cellule s'adapte à la largeur */
+            aspect-ratio: 1; /* Maintenir un carré */
+            background-color: rgba(220, 220, 220, 0.8); /* Cellules semi-transparentes */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #aaa;
+            cursor: pointer;
+        }
+        .cell.red {
+            background-color: red;
+        }
+        .cell.yellow {
+            background-color: yellow;
+        }
+        .cell:hover {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .message {
+            margin: 20px;
+            font-size: 3vw;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 2vw;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #666;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 6vw;
+            }
+            .message {
+                font-size: 4vw;
+            }
+            button {
+                font-size: 4vw;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Puissance 4 - Joueur vs Ordinateur</h1>
+    <div class="message">À vous de jouer !</div>
+    <div class="grid" id="grid"></div>
+    <button onclick="restartGame()">Recommencer</button>
+
+    <script>
+        // Initialisation des variables
+        const ROWS = 6;
+        const COLUMNS = 7;
+        const grid = document.getElementById("grid");
+        const message = document.querySelector(".message");
+        let board = [];
+        let currentPlayer = "red"; // Le joueur commence toujours (rouge)
+
+        // Création du plateau
+        function createBoard() {
+            grid.innerHTML = ""; // Réinitialiser la grille
+            board = Array.from({ length: ROWS }, () => Array(COLUMNS).fill(null));
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLUMNS; col++) {
+                    const cell = document.createElement("div");
+                    cell.classList.add("cell");
+                    cell.dataset.row = row;
+                    cell.dataset.col = col;
+                    cell.addEventListener("click", handleCellClick);
+                    grid.appendChild(cell);
+                }
+            }
+        }
+
+        // Gestion du clic sur une cellule par le joueur humain
+        function handleCellClick(e) {
+            if (currentPlayer !== "red") return; // Ignorer si ce n'est pas au tour du joueur
+            const col = parseInt(e.target.dataset.col);
+
+            // Placer le jeton du joueur
+            if (placeToken(col, "red")) {
+                if (checkWin("red")) {
+                    message.textContent = "Vous avez gagné ! 🎉";
+                    disableGrid();
+                    return;
+                }
+                currentPlayer = "yellow"; // Changer le tour
+                message.textContent = "Tour de l'ordinateur...";
+                setTimeout(computerTurn, 1000); // Laisser un délai pour simuler le tour de l'ordinateur
+            }
+        }
+
+        // Tour de l'ordinateur
+        function computerTurn() {
+            // Choisir une colonne aléatoire
+            let col;
+            do {
+                col = Math.floor(Math.random() * COLUMNS);
+            } while (!canPlaceToken(col));
+
+            // Placer le jeton de l'ordinateur
+            if (placeToken(col, "yellow")) {
+                if (checkWin("yellow")) {
+                    message.textContent = "L'ordinateur a gagné ! 🤖";
+                    disableGrid();
+                    return;
+                }
+                currentPlayer = "red"; // Revenir au joueur
+                message.textContent = "À vous de jouer !";
+            }
+        }
+
+        // Vérifier si un jeton peut être placé dans une colonne
+        function canPlaceToken(col) {
+            return board[0][col] === null; // La première ligne est vide
+        }
+
+        // Placer un jeton dans une colonne donnée
+        function placeToken(col, color) {
+            for (let row = ROWS - 1; row >= 0; row--) {
+                if (!board[row][col]) {
+                    board[row][col] = color;
+                    updateBoard();
+                    return true;
+                }
+            }
+            return false; // Si la colonne est pleine
+        }
+
+        // Mise à jour de l'affichage du plateau
+        function updateBoard() {
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLUMNS; col++) {
+                    const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+                    cell.classList.remove("red", "yellow");
+                    if (board[row][col]) {
+                        cell.classList.add(board[row][col]);
+                    }
+                }
+            }
+        }
+
+        // Vérification de la victoire
+        function checkWin(color) {
+            return (
+                checkDirection(color, 1, 0) || // Horizontal
+                checkDirection(color, 0, 1) || // Vertical
+                checkDirection(color, 1, 1) || // Diagonale descendante
+                checkDirection(color, 1, -1)   // Diagonale montante
+            );
+        }
+
+        function checkDirection(color, rowDir, colDir) {
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLUMNS; col++) {
+                    if (board[row][col] === color) {
+                        if (countConsecutive(row, col, rowDir, colDir, color) >= 4) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        function countConsecutive(row, col, rowDir, colDir, color) {
+            let count = 0;
+            let r = row;
+            let c = col;
+            while (r >= 0 && r < ROWS && c >= 0 && c < COLUMNS && board[r][c] === color) {
+                count++;
+                r += rowDir;
+                c += colDir;
+            }
+            return count;
+        }
+
+        // Désactiver les clics sur la grille
+        function disableGrid() {
+            grid.querySelectorAll(".cell").forEach(cell => {
+                cell.removeEventListener("click", handleCellClick);
+            });
+        }
+
+        // Réinitialisation du jeu
+        function restartGame() {
+            currentPlayer = "red";
+            message.textContent = "À vous de jouer !";
+            createBoard();
+        }
+
+        // Initialisation
+        createBoard();
+    </script>
+</body>
+</html>
