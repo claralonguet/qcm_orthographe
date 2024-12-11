@@ -85,157 +85,129 @@
 
     <script>
 const questions = [
-    // Lettre t
-    { question: "Trouve la bonne orthographe", options: ["une carte", "une karte", "une carth"], correct: "une carte" },
-    { question: "Trouve la bonne orthographe", options: ["montrer", "montrrer", "montér"], correct: "montrer" },
-    { question: "Trouve la bonne orthographe", options: ["un enfant", "un enfan", "un enfantt"], correct: "un enfant" },
-    { question: "Trouve la bonne orthographe", options: ["postal", "paustale", "postall"], correct: "postal" },
-    { question: "Trouve la bonne orthographe", options: ["l'Italie", "l'Itali", "l'Italiee"], correct: "l'Italie" },
-    { question: "Trouve la bonne orthographe", options: ["une tradition", "une tradission", "une traditiion"], correct: "une tradition" },
-    { question: "Trouve la bonne orthographe", options: ["la culture", "la culturr", "la cultur"], correct: "la culture" },
-    { question: "Trouve la bonne orthographe", options: ["devant", "devent", "devannt"], correct: "devant" },
-    { question: "Trouve la bonne orthographe", options: ["différent", "diférent", "differant"], correct: "différent" },
-    { question: "Trouve la bonne orthographe", options: ["l’histoire", "l'histoir", "l’histoirr"], correct: "l’histoire" },
-
-    // Lettre d
-    { question: "Trouve la bonne orthographe", options: ["un drapeau", "un drrapeau", "un drapeaux"], correct: "un drapeau" },
-    { question: "Trouve la bonne orthographe", options: ["le nord", "le norrd", "le noord"], correct: "le nord" },
-    { question: "Trouve la bonne orthographe", options: ["décider", "desider", "décidder"], correct: "décider" },
-    { question: "Trouve la bonne orthographe", options: ["beau", "bo", "beaux"], correct: "beau" },
-    { question: "Trouve la bonne orthographe", options: ["la Suède", "la suede", "la Suidde"], correct: "la Suède" },
-    { question: "Trouve la bonne orthographe", options: ["une légende", "une legande", "une légend"], correct: "une légende" },
-    { question: "Trouve la bonne orthographe", options: ["le froid", "le froit", "le froiid"], correct: "le froid" },
-    { question: "Trouve la bonne orthographe", options: ["dehors", "dehor", "dorrs"], correct: "dehors" },
-    { question: "Trouve la bonne orthographe", options: ["raconter", "racontter", "racontér"], correct: "raconter" },
-    { question: "Trouve la bonne orthographe", options: ["un fjord", "un fiord", "un fjore"], correct: "un fjord" },
-
-    // Lettre p
-    { question: "Trouve la bonne orthographe", options: ["le loup", "le lou", "le loop"], correct: "le loup" },
-    { question: "Trouve la bonne orthographe", options: ["petit", "petitt", "pettit"], correct: "petit" },
-    { question: "Trouve la bonne orthographe", options: ["apporter", "apportter", "aporter"], correct: "apporter" },
-    { question: "Trouve la bonne orthographe", options: ["un groupe", "un groupp", "un grope"], correct: "un groupe" },
-    { question: "Trouve la bonne orthographe", options: ["une photo", "une phauto", "une pheautto"], correct: "une photo" },
-    { question: "Trouve la bonne orthographe", options: ["chasser", "chacer", "chaserr"], correct: "chasser" },
-    { question: "Trouve la bonne orthographe", options: ["une espèce", "une espezce", "une espec"], correct: "une espèce" },
-    { question: "Trouve la bonne orthographe", options: ["une proie", "une proy", "une prois"], correct: "une proie" },
-    { question: "Trouve la bonne orthographe", options: ["présent", "présan", "present"], correct: "présent" },
-    { question: "Trouve la bonne orthographe", options: ["l’hémisphère", "l’hémisfer", "l’hémysphère"], correct: "l’hémisphère" },
-
-    // Lettre a
-    { question: "Trouve la bonne orthographe", options: ["un continent", "un contineent", "un continant"], correct: "un continent" },
-    { question: "Trouve la bonne orthographe", options: ["grand", "grrand", "graand"], correct: "grand" },
-    { question: "Trouve la bonne orthographe", options: ["nouveau", "nouvea", "nouveux"], correct: "nouveau" },
-    { question: "Trouve la bonne orthographe", options: ["aimer", "aimmer", "émer"], correct: "aimer" },
-    { question: "Trouve la bonne orthographe", options: ["beaucoup", "beaucoupp", "beaucou"], correct: "beaucoup" },
-    { question: "Trouve la bonne orthographe", options: ["maintenant", "maintennant", "maintenent"], correct: "maintenant" },
-    { question: "Trouve la bonne orthographe", options: ["annoncer", "anonsser", "annonse"], correct: "annoncer" },
-    { question: "Trouve la bonne orthographe", options: ["prochain", "procain", "prochian"], correct: "prochain" },
-    { question: "Trouve la bonne orthographe", options: ["autour", "ottour", "autoor"], correct: "autour" },
-    { question: "Trouve la bonne orthographe", options: ["travailler", "travayer", "travaillerr"], correct: "travailler" },
-
-    // Lettre e
-    { question: "Trouve la bonne orthographe", options: ["une montagne", "une montagn", "une montane"], correct: "une montagne" },
-    { question: "Trouve la bonne orthographe", options: ["plus", "pluss", "plu"], correct: "plus" },
-    { question: "Trouve la bonne orthographe", options: ["haut", "aut", "hautt"], correct: "haut" },
-    { question: "Trouve la bonne orthographe", options: ["se situer", "ce situer", "se situé"], correct: "se situer" },
-    { question: "Trouve la bonne orthographe", options: ["le Tibet", "le tibbett", "le tibett"], correct: "le Tibet" },
-    { question: "Trouve la bonne orthographe", options: ["plein", "plenn", "plin"], correct: "plein" },
-    { question: "Trouve la bonne orthographe", options: ["rêver", "réver", "reverr"], correct: "rêver" },
-    { question: "Trouve la bonne orthographe", options: ["célèbre", "celèbre", "celébrre"], correct: "célèbre" },
-    { question: "Trouve la bonne orthographe", options: ["grimper", "grimmpé", "grimpé"], correct: "grimper" },
-    { question: "Trouve la bonne orthographe", options: ["dangereux", "dangeureux", "dangerrux"], correct: "dangereux" },
-
-    // Les accents
-    { question: "Trouve la bonne orthographe", options: ["fêter", "fetrer", "fétér"], correct: "fêter" },
-    { question: "Trouve la bonne orthographe", options: ["décorer", "decorer", "décoré"], correct: "décorer" },
-    { question: "Trouve la bonne orthographe", options: ["déjà", "déja", "deja"], correct: "déjà" },
-    { question: "Trouve la bonne orthographe", options: ["le lièvre", "le liévrr", "le lievre"], correct: "le lièvre" },
-    { question: "Trouve la bonne orthographe", options: ["la Chine", "la chinne", "la chîne"], correct: "la Chine" },
-    { question: "Trouve la bonne orthographe", options: ["préparer", "prépper", "préparé"], correct: "préparer" },
-    { question: "Trouve la bonne orthographe", options: ["là-bas", "labas", "là-ba"], correct: "là-bas" },
-    { question: "Trouve la bonne orthographe", options: ["un pétard", "un pétarre", "un petar"], correct: "un pétard" },
-    { question: "Trouve la bonne orthographe", options: ["le défilé", "le déffilé", "le déffille"], correct: "le défilé" },
-    { question: "Trouve la bonne orthographe", options: ["drôle", "drole", "drôll"], correct: "drôle" }
+    // Mots précédents
+    { question: "Trouve la bonne orthographe", options: ["une carte", "une karte", "une cartee"], correct: "une carte" },
+    { question: "Trouve la bonne orthographe", options: ["montrer", "montret", "monttrer"], correct: "montrer" },
+    { question: "Trouve la bonne orthographe", options: ["un enfant", "un anfant", "un enfantt"], correct: "un enfant" },
+    { question: "Trouve la bonne orthographe", options: ["postal", "postale", "postall"], correct: "postal" },
+    { question: "Trouve la bonne orthographe", options: ["l’Italie", "l’Itali", "l’Italiee"], correct: "l’Italie" },
+    { question: "Trouve la bonne orthographe", options: ["une tradition", "une tradision", "une tradittion"], correct: "une tradition" },
+    { question: "Trouve la bonne orthographe", options: ["la culture", "la culturr", "la cultoure"], correct: "la culture" },
+    { question: "Trouve la bonne orthographe", options: ["devant", "devans", "devantt"], correct: "devant" },
+    { question: "Trouve la bonne orthographe", options: ["différent", "diférent", "différand"], correct: "différent" },
+    { question: "Trouve la bonne orthographe", options: ["l’histoire", "l’istoir", "l’histoir"], correct: "l’histoire" },
+    // Lettre S
+    { question: "Trouve la bonne orthographe", options: ["un légume", "un légumme", "un legume"], correct: "un légume" },
+    { question: "Trouve la bonne orthographe", options: ["manger", "mangé", "menger"], correct: "manger" },
+    { question: "Trouve la bonne orthographe", options: ["cuisiner", "cuisinerr", "cuisinier"], correct: "cuisiner" },
+    { question: "Trouve la bonne orthographe", options: ["une sauce", "une sausse", "une sauçe"], correct: "une sauce" },
+    { question: "Trouve la bonne orthographe", options: ["un pays", "un païs", "un pay"], correct: "un pays" },
+    { question: "Trouve la bonne orthographe", options: ["du poisson", "dupoisson", "du poisoon"], correct: "du poisson" },
+    { question: "Trouve la bonne orthographe", options: ["un repas", "un repa", "un rèpas"], correct: "un repas" },
+    { question: "Trouve la bonne orthographe", options: ["proposer", "propser", "proposser"], correct: "proposer" },
+    { question: "Trouve la bonne orthographe", options: ["sucré", "sucrer", "sucret"], correct: "sucré" },
+    { question: "Trouve la bonne orthographe", options: ["sauvage", "sauvaje", "sauvagge"], correct: "sauvage" },
+    // Fin de la liste
 ];
 
-        // Variables globales
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let selectedQuestions = [];
+// Variables globales
+let currentQuestionIndex = 0;
+let score = 0;
+let selectedQuestions = [];
+let pendingQuestion = null; // Pour suivre la question incorrecte
+let answeredIncorrectly = new Set(); // Suivre les questions mal répondues
 
-        // Sélectionne 10 questions aléatoires
-        function selectRandomQuestions() {
-            const shuffled = [...questions].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, 10);
+// Sélectionne 10 questions aléatoires
+function selectRandomQuestions() {
+    const shuffled = [...questions].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 10);
+}
+
+// Affiche une question
+function displayQuestion() {
+    // Si une question est en attente, la réafficher
+    if (pendingQuestion) {
+        showQuestion(pendingQuestion);
+        pendingQuestion = null;
+        return;
+    }
+
+    if (currentQuestionIndex >= selectedQuestions.length) {
+        showResult();
+        return;
+    }
+
+    const currentQuestion = selectedQuestions[currentQuestionIndex];
+    showQuestion(currentQuestion);
+}
+
+// Fonction pour afficher une question spécifique
+function showQuestion(question) {
+    document.getElementById("question").textContent = question.question;
+
+    // Mélange les options
+    const shuffledOptions = [...question.options].sort(() => 0.5 - Math.random());
+
+    const optionsContainer = document.getElementById("options");
+    optionsContainer.innerHTML = ""; // Efface les options précédentes
+
+    shuffledOptions.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.className = "option";
+        button.onclick = () => checkAnswer(option, question);
+        optionsContainer.appendChild(button);
+    });
+}
+
+// Vérifie la réponse
+function checkAnswer(selectedOption, question) {
+    if (selectedOption === question.correct) {
+        if (!answeredIncorrectly.has(question)) {
+            score++; // Ajouter au score seulement si la question n'a jamais été mal répondue
         }
+        currentQuestionIndex++;
+    } else {
+        alert(`Incorrect ! La bonne réponse était : "${question.correct}"`);
+        pendingQuestion = question; // Remet la question en attente
+        answeredIncorrectly.add(question); // Marquer cette question comme mal répondue
+    }
+    displayQuestion();
+}
 
-        // Affiche une question
-        function displayQuestion() {
-            if (currentQuestionIndex >= selectedQuestions.length) {
-                showResult();
-                return;
-            }
+// Affiche le résultat final
+function showResult() {
+    document.getElementById("quiz-container").style.display = "none";
+    const resultPopup = document.getElementById("result-popup");
+    resultPopup.style.display = "block";
+    document.getElementById("result-text").textContent = `Votre score : ${score} / ${selectedQuestions.length}`;
 
-            const currentQuestion = selectedQuestions[currentQuestionIndex];
-            document.getElementById("question").textContent = currentQuestion.question;
+    // Affiche le bouton pour Puissance Quatre si score >= 9
+    if (score >= 9) {
+        document.getElementById("redirect-button").style.display = "inline-block";
+    }
+}
 
-            // Mélange les options
-            const shuffledOptions = [...currentQuestion.options].sort(() => 0.5 - Math.random());
+// Redémarre le quiz
+function restartQuiz() {
+    score = 0;
+    currentQuestionIndex = 0;
+    pendingQuestion = null;
+    answeredIncorrectly.clear();
+    selectedQuestions = selectRandomQuestions();
+    document.getElementById("quiz-container").style.display = "block";
+    document.getElementById("result-popup").style.display = "none";
+    displayQuestion();
+}
 
-            const optionsContainer = document.getElementById("options");
-            optionsContainer.innerHTML = ""; // Clear previous options
+// Redirige vers la page Puissance Quatre
+function redirectToGame() {
+    window.location.href = "puissancequatre.html";
+}
 
-            shuffledOptions.forEach(option => {
-                const button = document.createElement("button");
-                button.textContent = option;
-                button.className = "option";
-                button.onclick = () => checkAnswer(option, currentQuestion.correct);
-                optionsContainer.appendChild(button);
-            });
-        }
-
-        // Vérifie la réponse et affiche une popup si incorrecte
-        function checkAnswer(selectedOption, correctOption) {
-            if (selectedOption === correctOption) {
-                score++;
-            } else {
-                alert(`Incorrect ! La bonne réponse était : "${correctOption}"`);
-            }
-            currentQuestionIndex++;
-            displayQuestion();
-        }
-
-        // Affiche le résultat final
-        function showResult() {
-            document.getElementById("quiz-container").style.display = "none";
-            const resultPopup = document.getElementById("result-popup");
-            resultPopup.style.display = "block";
-            document.getElementById("result-text").textContent = `Votre score : ${score} / ${selectedQuestions.length}`;
-
-            // Affiche le bouton pour Puissance Quatre si score >= 9
-            if (score >= 9) {
-                document.getElementById("redirect-button").style.display = "inline-block";
-            }
-        }
-
-        // Redémarre le quiz
-        function restartQuiz() {
-            score = 0;
-            currentQuestionIndex = 0;
-            selectedQuestions = selectRandomQuestions();
-            document.getElementById("quiz-container").style.display = "block";
-            document.getElementById("result-popup").style.display = "none";
-            displayQuestion();
-        }
-
-        // Redirige vers la page Puissance Quatre
-        function redirectToGame() {
-            window.location.href = "puissancequatre.html";
-        }
-
-        // Initialise le quiz
-        selectedQuestions = selectRandomQuestions();
-        displayQuestion();
+// Initialise le quiz
+selectedQuestions = selectRandomQuestions();
+displayQuestion();
     </script>
 </body>
 </html>
