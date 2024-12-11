@@ -81,6 +81,7 @@
         <p id="result-text"></p>
         <button onclick="restartQuiz()">Rejouer</button>
         <button id="redirect-button" style="display: none;" onclick="redirectToGame()">Jouer à Puissance Quatre</button>
+    	<button id="star-button" style="display: none;" onclick="redirectToStarGame()">Chasse Étoile</button>
     </div>
 
     <script>
@@ -245,6 +246,7 @@ function showResult() {
     // Affiche le bouton pour Puissance Quatre si score >= 9
     if (score >= 9) {
         document.getElementById("redirect-button").style.display = "inline-block";
+	document.getElementById("star-button").style.display = "inline-block";
     }
 }
 
@@ -263,6 +265,9 @@ function restartQuiz() {
 // Redirige vers la page Puissance Quatre
 function redirectToGame() {
     window.location.href = "puissancequatre.html";
+}
+function redirectToStarGame() {
+    window.location.href = "jeuetoile.html";
 }
 
 // Initialise le quiz
