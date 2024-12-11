@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu des Étoiles</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('fond.png') no-repeat center center fixed; /* Remplacez par une image d'arrière-plan */
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin: 20px 0;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .star {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('star.png') no-repeat center center; /* Remplacez par une image d'étoile */
+            background-size: contain;
+            cursor: pointer;
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            color: white;
+        }
+
+        #timer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: white;
+        }
+
+        #game-over {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #restart-button, #back-button {
+            background: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: black;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        #back-button {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jeu des Étoiles</h1>
+    <div id="game-container">
+        <div id="score">Score : 0</div>
+        <div id="timer">Temps : 30s</div>
+        <div id="game-over">
+            <p>Temps écoulé !</p>
+            <p>Votre score est : <span id="final-score">0</span></p>
+            <button id="restart-button">Rejouer</button>
+            <button id="back-button">Retour QCM</button>
+        </div>
+    </div>
+
+    <script>
+        const gameContainer = document.getElementById('game-container');
+        const scoreElement = document.getElementById('score');
+        const timerElement = document.getElementById('timer');
+        const gameOverElement = document.getElementById('game-over');
+        const finalScoreElement = document.getElementById('final-score');
+        const restartButton = document.getElementById('restart-button');
+        const backButton = document.getElementById('back-button');
+
+        let score = 0;
+        let timeLeft = 30; // Temps en secondes
+        let gameInterval;
+        let timerInterval;
+
+        // Fonction pour générer une étoile à une position aléatoire
+        function generateStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = Math.random() * (gameContainer.clientHeight - 50) + 'px';
+            star.style.left = Math.random() * (gameContainer.clientWidth - 50) + 'px';
+
+            // Ajouter un événement de clic
+            star.addEventListener('click', () => {
+                score++;
+                scoreElement.textContent = `Score : ${score}`;
+                star.remove(); // Supprime l'étoile après le clic
+            });
+
+            gameContainer.appendChild(star);
+
+            // Supprime l'étoile après 2 secondes si elle n'est pas cliquée
+            setTimeout(() => {
+                if (gameContainer.contains(star)) {
+                    star.remove();
+                }
+            }, 2000);
+        }
+
+        // Fonction pour démarrer le jeu
+        function startGame() {
+            score = 0;
+            timeLeft = 30;
+            scoreElement.textContent = `Score : ${score}`;
+            timerElement.textContent = `Temps : ${timeLeft}s`;
+            gameOverElement.style.display = 'none';
+
+            // Générer des étoiles toutes les 800ms
+            gameInterval = setInterval(generateStar, 800);
+
+            // Démarrer le compte à rebours
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = `Temps : ${timeLeft}s`;
+
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        // Fonction pour arrêter le jeu
+        function endGame() {
+            clearInterval(gameInterval);
+            clearInterval(timerInterval);
+            gameOverElement.style.display = 'block';
+            finalScoreElement.textContent = score;
+        }
+
+        // Bouton rejouer
+        restartButton.addEventListener('click', startGame);
+
+        // Bouton Retour QCM
+        backButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Démarrage initial du jeu
+        startGame();
+    </script>
+</body>
+</html>
