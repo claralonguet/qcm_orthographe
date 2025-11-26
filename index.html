@@ -86,32 +86,43 @@
 
     <script>
 const questions =[
-    // Noms
-    { "question": "Trouve la bonne orthographe", "options": ["l’automne", "l'autone", "l'otomne"], "correct": "l’automne" },
-    { "question": "Trouve la bonne orthographe", "options": ["un tableau", "un tablau", "un tablot"], "correct": "un tableau" },
-    { "question": "Trouve la bonne orthographe", "options": ["le nom", "le non", "le nomb"], "correct": "le nom" },
-    { "question": "Trouve la bonne orthographe", "options": ["le portrait", "le portrai", "le portret"], "correct": "le portrait" },
-    { "question": "Trouve la bonne orthographe", "options": ["le fruit", "le frui", "le fruie"], "correct": "le fruit" },
-    { "question": "Trouve la bonne orthographe", "options": ["un légume", "un legume", "un légumme"], "correct": "un légume" },
-    { "question": "Trouve la bonne orthographe", "options": ["un élément", "un élémen", "un éllément"], "correct": "un élément" },
-    { "question": "Trouve la bonne orthographe", "options": ["un personnage", "un personage", "un perssonnage"], "correct": "un personnage" },
-    { "question": "Trouve la bonne orthographe", "options": ["le visage", "le visaj", "le visaje"], "correct": "le visage" },
-    { "question": "Trouve la bonne orthographe", "options": ["la poire", "la poirr", "la poirre"], "correct": "la poire" },
+    // NOMS
+    { "question": "Trouve la bonne orthographe", "options": ["la lumière", "la lumierre", "la lumiere"], "correct": "la lumière" },
+    { "question": "Trouve la bonne orthographe", "options": ["un paysage", "un payssage", "un paysaje"], "correct": "un paysage" },
+    { "question": "Trouve la bonne orthographe", "options": ["le mystère", "le mistere", "le mystair"], "correct": "le mystère" },
+    { "question": "Trouve la bonne orthographe", "options": ["le rêve", "le réve", "le rève"], "correct": "le rêve" },
+    { "question": "Trouve la bonne orthographe", "options": ["le jour", "le jourr", "le jourre"], "correct": "le jour" },
+    { "question": "Trouve la bonne orthographe", "options": ["la nuit", "la nuitt", "la nuits"], "correct": "la nuit" },
+    { "question": "Trouve la bonne orthographe", "options": ["une impression", "une impréssion", "une impreson"], "correct": "une impression" },
+    { "question": "Trouve la bonne orthographe", "options": ["une fois", "une foua", "une foi"], "correct": "une fois" },
+    { "question": "Trouve la bonne orthographe", "options": ["l'image", "l'imaje", "l'imagg"], "correct": "l'image" },
+    { "question": "Trouve la bonne orthographe", "options": ["la partie", "la parttie", "la partye"], "correct": "la partie" },
+    { "question": "Trouve la bonne orthographe", "options": ["le nuage", "le nuaje", "le nuagge"], "correct": "le nuage" },
+    { "question": "Trouve la bonne orthographe", "options": ["le ciel", "le cielle", "le siel"], "correct": "le ciel" },
+    { "question": "Trouve la bonne orthographe", "options": ["un arbre", "un arbe", "un arbr"], "correct": "un arbre" },
+    { "question": "Trouve la bonne orthographe", "options": ["le matin", "le matain", "le mattin"], "correct": "le matin" },
+    { "question": "Trouve la bonne orthographe", "options": ["le soir", "le soire", "le soirr"], "correct": "le soir" },
 
-    // Verbes (⚠️ fautes non conjuguées)
-    { "question": "Trouve la bonne orthographe", "options": ["assembler", "assambler", "asemlber"], "correct": "assembler" },
-    { "question": "Trouve la bonne orthographe", "options": ["composer", "composser", "compauzer"], "correct": "composer" },
+    // VERBES (fautes NON conjuguées)
+    { "question": "Trouve la bonne orthographe", "options": ["faire", "fere", "fair"], "correct": "faire" },
+    { "question": "Trouve la bonne orthographe", "options": ["peindre", "pindre", "peindrre"], "correct": "peindre" },
+    { "question": "Trouve la bonne orthographe", "options": ["sembler", "senbler", "sambler"], "correct": "sembler" },
+    { "question": "Trouve la bonne orthographe", "options": ["traverser", "traversser", "travercer"], "correct": "traverser" },
 
-    // Adjectifs
-    { "question": "Trouve la bonne orthographe", "options": ["important", "importan", "importent"], "correct": "important" },
-    { "question": "Trouve la bonne orthographe", "options": ["nombreux", "nombreu", "nonbreux"], "correct": "nombreux" },
-    { "question": "Trouve la bonne orthographe", "options": ["autre", "autrr", "austre"], "correct": "autre" },
-    { "question": "Trouve la bonne orthographe", "options": ["naturel", "natirel", "natturel"], "correct": "naturel" },
+    // ADJECTIFS
+    { "question": "Trouve la bonne orthographe", "options": ["impossible", "impossiblle", "imposible"], "correct": "impossible" },
+    { "question": "Trouve la bonne orthographe", "options": ["plein", "plin", "plenn"], "correct": "plein" },
+    { "question": "Trouve la bonne orthographe", "options": ["noir", "noire", "noirr"], "correct": "noir" },
+    { "question": "Trouve la bonne orthographe", "options": ["lumineux", "lumineu", "luminneux"], "correct": "lumineux" },
+    { "question": "Trouve la bonne orthographe", "options": ["sombre", "sombrr", "sombreu"], "correct": "sombre" },
+    { "question": "Trouve la bonne orthographe", "options": ["même", "memme", "meme"], "correct": "même" },
 
-    // Autres mots
+    // AUTRES MOTS
+    { "question": "Trouve la bonne orthographe", "options": ["dans", "danns", "dan"], "correct": "dans" },
     { "question": "Trouve la bonne orthographe", "options": ["comme", "come", "comm"], "correct": "comme" },
-    { "question": "Trouve la bonne orthographe", "options": ["ainsi", "insi", "ainsie"], "correct": "ainsi" },
-    { "question": "Trouve la bonne orthographe", "options": ["pour", "por", "pourr"], "correct": "pour" }
+    { "question": "Trouve la bonne orthographe", "options": ["au-dessus", "au-dessu", "audessus"], "correct": "au-dessus" },
+    { "question": "Trouve la bonne orthographe", "options": ["au-dessous", "au-dessou", "audessou"], "correct": "au-dessous" },
+    { "question": "Trouve la bonne orthographe", "options": ["en", "an", "enn"], "correct": "en" }
 ]
 
 
@@ -222,6 +233,7 @@ displayQuestion();
     </script>
 </body>
 </html>
+
 
 
 
