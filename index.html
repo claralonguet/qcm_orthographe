@@ -87,44 +87,26 @@
     <script>
 const questions =[
     // NOMS
-    { "question": "Trouve la bonne orthographe", "options": ["la lumière", "la lumierre", "la lumiere"], "correct": "la lumière" },
-    { "question": "Trouve la bonne orthographe", "options": ["un paysage", "un payssage", "un paysaje"], "correct": "un paysage" },
-    { "question": "Trouve la bonne orthographe", "options": ["le mystère", "le mistere", "le mystair"], "correct": "le mystère" },
-    { "question": "Trouve la bonne orthographe", "options": ["le rêve", "le réve", "le rève"], "correct": "le rêve" },
-    { "question": "Trouve la bonne orthographe", "options": ["le jour", "le jourr", "le jourre"], "correct": "le jour" },
-    { "question": "Trouve la bonne orthographe", "options": ["la nuit", "la nuitt", "la nuits"], "correct": "la nuit" },
-    { "question": "Trouve la bonne orthographe", "options": ["une impression", "une impréssion", "une impreson"], "correct": "une impression" },
-    { "question": "Trouve la bonne orthographe", "options": ["une fois", "une foua", "une foi"], "correct": "une fois" },
-    { "question": "Trouve la bonne orthographe", "options": ["l'image", "l'imaje", "l'imagg"], "correct": "l'image" },
-    { "question": "Trouve la bonne orthographe", "options": ["la partie", "la parttie", "la partye"], "correct": "la partie" },
-    { "question": "Trouve la bonne orthographe", "options": ["le nuage", "le nuaje", "le nuagge"], "correct": "le nuage" },
-    { "question": "Trouve la bonne orthographe", "options": ["le ciel", "le cielle", "le siel"], "correct": "le ciel" },
-    { "question": "Trouve la bonne orthographe", "options": ["un arbre", "un arbe", "un arbr"], "correct": "un arbre" },
-    { "question": "Trouve la bonne orthographe", "options": ["le matin", "le matain", "le mattin"], "correct": "le matin" },
-    { "question": "Trouve la bonne orthographe", "options": ["le soir", "le soire", "le soirr"], "correct": "le soir" },
+    { "question": "Trouve la bonne orthographe", "options": ["l’Antiquité", "l’Antiquitée", "l’Anticuité"], "correct": "l’Antiquité" },
+    { "question": "Trouve la bonne orthographe", "options": ["un pays", "un pay", "un païs"], "correct": "un pays" },
+    { "question": "Trouve la bonne orthographe", "options": ["la Gaule", "la Gaull", "la Gaul"], "correct": "la Gaule" },
+    { "question": "Trouve la bonne orthographe", "options": ["les Gaulois", "les Gaullois", "les Gauloix"], "correct": "les Gaulois" },
+    { "question": "Trouve la bonne orthographe", "options": ["les Romains", "les Romains", "les Romin"], "correct": "les Romains" },
+    { "question": "Trouve la bonne orthographe", "options": ["la guerre", "la gerre", "la guer", "la guère"], "correct": "la guerre" },
+    { "question": "Trouve la bonne orthographe", "options": ["une bataille", "une bataile", "une bataillle"], "correct": "une bataille" },
+    { "question": "Trouve la bonne orthographe", "options": ["une coutume", "une coutumme", "une coutime"], "correct": "une coutume" },
 
-    // VERBES (fautes NON conjuguées)
-    { "question": "Trouve la bonne orthographe", "options": ["faire", "fere", "fair"], "correct": "faire" },
-    { "question": "Trouve la bonne orthographe", "options": ["peindre", "pindre", "peindrre"], "correct": "peindre" },
-    { "question": "Trouve la bonne orthographe", "options": ["sembler", "senbler", "sambler"], "correct": "sembler" },
-    { "question": "Trouve la bonne orthographe", "options": ["traverser", "traversser", "travercer"], "correct": "traverser" },
-
-    // ADJECTIFS
-    { "question": "Trouve la bonne orthographe", "options": ["impossible", "impossiblle", "imposible"], "correct": "impossible" },
-    { "question": "Trouve la bonne orthographe", "options": ["plein", "plin", "plenn"], "correct": "plein" },
-    { "question": "Trouve la bonne orthographe", "options": ["noir", "noire", "noirr"], "correct": "noir" },
-    { "question": "Trouve la bonne orthographe", "options": ["lumineux", "lumineu", "luminneux"], "correct": "lumineux" },
-    { "question": "Trouve la bonne orthographe", "options": ["sombre", "sombrr", "sombreu"], "correct": "sombre" },
-    { "question": "Trouve la bonne orthographe", "options": ["même", "memme", "meme"], "correct": "même" },
+    // VERBES
+    { "question": "Trouve la bonne orthographe", "options": ["gagner", "gager", "ganier"], "correct": "gagner" },
+    { "question": "Trouve la bonne orthographe", "options": ["s’appeler", "s’apeler", "s'appellé"], "correct": "s’appeler" },
+    { "question": "Trouve la bonne orthographe", "options": ["vivre", "vivrr", "vivr"], "correct": "vivre" },
+    { "question": "Trouve la bonne orthographe", "options": ["adopter", "adoptter", "hadopter"], "correct": "adopter" },
 
     // AUTRES MOTS
-    { "question": "Trouve la bonne orthographe", "options": ["dans", "danns", "dan"], "correct": "dans" },
-    { "question": "Trouve la bonne orthographe", "options": ["comme", "come", "comm"], "correct": "comme" },
-    { "question": "Trouve la bonne orthographe", "options": ["au-dessus", "au-dessu", "audessus"], "correct": "au-dessus" },
-    { "question": "Trouve la bonne orthographe", "options": ["au-dessous", "au-dessou", "audessou"], "correct": "au-dessous" },
-    { "question": "Trouve la bonne orthographe", "options": ["en", "an", "enn"], "correct": "en" }
+    { "question": "Trouve la bonne orthographe", "options": ["pendant", "pendan", "pandant"], "correct": "pendant" },
+    { "question": "Trouve la bonne orthographe", "options": ["après", "aprè", "apré"], "correct": "après" },
+    { "question": "Trouve la bonne orthographe", "options": ["plusieurs", "plusiers", "pluzieurs"], "correct": "plusieurs" }
 ]
-
 
 ;
 
@@ -233,6 +215,7 @@ displayQuestion();
     </script>
 </body>
 </html>
+
 
 
 
