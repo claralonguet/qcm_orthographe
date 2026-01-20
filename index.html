@@ -87,29 +87,47 @@
     <script>
 const questions =[
     // NOMS
-    { "question": "Trouve la bonne orthographe", "options": ["un paysage", "un payage", "un paissage"], "correct": "un paysage" },
-    { "question": "Trouve la bonne orthographe", "options": ["la campagne", "la campane", "la campaigne"], "correct": "la campagne" },
-    { "question": "Trouve la bonne orthographe", "options": ["une journée", "une journé", "une journnée"], "correct": "une journée" },
-    { "question": "Trouve la bonne orthographe", "options": ["l’été", "l'eté", "l’étée"], "correct": "l’été" },
+    { "question": "Trouve la bonne orthographe", "options": ["la mythologie", "la mitologie", "la mythollogie"], "correct": "la mythologie" },
+    { "question": "Trouve la bonne orthographe", "options": ["une aventure", "une aventur", "une avventure"], "correct": "une aventure" },
+    { "question": "Trouve la bonne orthographe", "options": ["un dieu", "un dieux", "un dio"], "correct": "un dieu" },
+    { "question": "Trouve la bonne orthographe", "options": ["une déesse", "une deesse", "une dées"], "correct": "une déesse" },
+    { "question": "Trouve la bonne orthographe", "options": ["le chef", "le cheff", "le chep"], "correct": "le chef" },
+    { "question": "Trouve la bonne orthographe", "options": ["un éclair", "un éclaire", "un écler"], "correct": "un éclair" },
+    { "question": "Trouve la bonne orthographe", "options": ["le frère", "le frere", "le frèrre"], "correct": "le frère" },
+    { "question": "Trouve la bonne orthographe", "options": ["la mer", "la mèrr", "la maire"], "correct": "la mer" },
+    { "question": "Trouve la bonne orthographe", "options": ["l’enfer", "l’anfer", "l’enferr"], "correct": "l’enfer" },
     { "question": "Trouve la bonne orthographe", "options": ["un enfant", "un enfan", "un enfantt"], "correct": "un enfant" },
-    { "question": "Trouve la bonne orthographe", "options": ["une mère", "une mére", "une merre"], "correct": "une mère" },
-    { "question": "Trouve la bonne orthographe", "options": ["le pré", "le prè", "le prée"], "correct": "le pré" },
-    { "question": "Trouve la bonne orthographe", "options": ["le tableau", "le tablleau", "le tablot"], "correct": "le tableau" },
+    { "question": "Trouve la bonne orthographe", "options": ["le jumeau", "le jumot", "le jummeau"], "correct": "le jumeau" },
+    { "question": "Trouve la bonne orthographe", "options": ["la jumelle", "la jumel", "la jummelle"], "correct": "la jumelle" },
+    { "question": "Trouve la bonne orthographe", "options": ["le messager", "le messagé", "le messagerr"], "correct": "le messager" },
+    { "question": "Trouve la bonne orthographe", "options": ["la messagère", "la messagére", "la messagerre"], "correct": "la messagère" },
+    { "question": "Trouve la bonne orthographe", "options": ["la Terre", "la tère", "la terre"], "correct": "la Terre" },
+    { "question": "Trouve la bonne orthographe", "options": ["le héros", "le héro", "le héross"], "correct": "le héros" },
+    { "question": "Trouve la bonne orthographe", "options": ["un exploit", "un exploie", "un exploi"], "correct": "un exploit" },
 
     // VERBES (fautes non conjuguées)
-    { "question": "Trouve la bonne orthographe", "options": ["représenter", "représanter", "reprécenter"], "correct": "représenter" },
-    { "question": "Trouve la bonne orthographe", "options": ["se promener", "se promenner", "se prommerner"], "correct": "se promener" },
+    { "question": "Trouve la bonne orthographe", "options": ["raconter", "racconter", "raconterr"], "correct": "raconter" },
+    { "question": "Trouve la bonne orthographe", "options": ["lancer", "lançer", "lanncer"], "correct": "lancer" },
+    { "question": "Trouve la bonne orthographe", "options": ["gouverner", "gouvernerr", "gouvernner"], "correct": "gouverner" },
+    { "question": "Trouve la bonne orthographe", "options": ["réaliser", "réalisser", "réalliser"], "correct": "réaliser" },
 
     // ADJECTIFS
-    { "question": "Trouve la bonne orthographe", "options": ["célèbre", "celèbre", "célebre"], "correct": "célèbre" },
-    { "question": "Trouve la bonne orthographe", "options": ["calme", "calmme", "kalme"], "correct": "calme" },
+    { "question": "Trouve la bonne orthographe", "options": ["extraordinaire", "extrordinnaire", "extraordinair"], "correct": "extraordinaire" },
+    { "question": "Trouve la bonne orthographe", "options": ["antique", "antic", "antiquee"], "correct": "antique" },
+    { "question": "Trouve la bonne orthographe", "options": ["beau", "bo", "beaux"], "correct": "beau" },
+    { "question": "Trouve la bonne orthographe", "options": ["belle", "bel", "bèle"], "correct": "belle" },
+    { "question": "Trouve la bonne orthographe", "options": ["intelligent", "intéligent", "intelligant"], "correct": "intelligent" },
+    { "question": "Trouve la bonne orthographe", "options": ["intelligente", "intéligente", "intelligentte"], "correct": "intelligente" },
+    { "question": "Trouve la bonne orthographe", "options": ["rusé", "ruzé", "rusée"], "correct": "rusé" },
+    { "question": "Trouve la bonne orthographe", "options": ["fort", "for", "forrt"], "correct": "fort" },
 
     // AUTRES MOTS
-    { "question": "Trouve la bonne orthographe", "options": ["chacun", "chacunn", "chaquun"], "correct": "chacun" },
-    { "question": "Trouve la bonne orthographe", "options": ["lors", "lort", "lor"], "correct": "lors" },
     { "question": "Trouve la bonne orthographe", "options": ["avec", "avek", "avvec"], "correct": "avec" },
-    { "question": "Trouve la bonne orthographe", "options": ["à travers", "a traver", "atravers"], "correct": "à travers" }
+    { "question": "Trouve la bonne orthographe", "options": ["sur", "surr", "sûr"], "correct": "sur" },
+    { "question": "Trouve la bonne orthographe", "options": ["plusieurs", "plusiers", "pluzieurs"], "correct": "plusieurs" },
+    { "question": "Trouve la bonne orthographe", "options": ["comme", "com", "comm"], "correct": "comme" }
 ]
+
 
 
 
@@ -220,6 +238,7 @@ displayQuestion();
     </script>
 </body>
 </html>
+
 
 
 
