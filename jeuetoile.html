@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background: url('fond2.png') no-repeat center center fixed; /* Remplacez par une image d'arrière-plan */
+            background: url('fond2.jpg') no-repeat center center fixed; /* Remplacez par une image d'arrière-plan */
             background-size: cover;
             overflow: hidden;
         }
@@ -90,7 +90,6 @@
         <div id="game-over">
             <p>Temps écoulé !</p>
             <p>Votre score est : <span id="final-score">0</span></p>
-            <button id="restart-button">Rejouer</button>
             <button id="back-button">Retour QCM</button>
         </div>
     </div>
@@ -163,8 +162,6 @@
             finalScoreElement.textContent = score;
         }
 
-        // Bouton rejouer
-        restartButton.addEventListener('click', startGame);
 
         // Bouton Retour QCM
         backButton.addEventListener('click', () => {
@@ -176,4 +173,5 @@
     </script>
 </body>
 </html>
+
 
