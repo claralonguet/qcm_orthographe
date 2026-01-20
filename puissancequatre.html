@@ -88,7 +88,7 @@
     <h1>Puissance 4 - Joueur vs Ordinateur</h1>
     <div class="message">À vous de jouer !</div>
     <div class="grid" id="grid"></div>
-    <button id="back-button">Retour QCM</button>
+    <button onclick="restartGame()">Recommencer</button>
 
     <script>
         // Initialisation des variables
@@ -231,17 +231,9 @@
             message.textContent = "À vous de jouer !";
             createBoard();
         }
-              backButton.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
 
         // Initialisation
         createBoard();
     </script>
 </body>
 </html>
-
-
-
-
-
