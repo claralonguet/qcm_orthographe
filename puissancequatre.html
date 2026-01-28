@@ -34,7 +34,6 @@
             gap: 1vw;
             width: 90vw;
             max-width: 600px;
-            justify-content: center;
         }
 
         .cell {
@@ -52,10 +51,6 @@
 
         .cell.yellow {
             background-color: yellow;
-        }
-
-        .cell:hover {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
 
         .message {
@@ -80,176 +75,198 @@
         }
 
         @media (max-width: 600px) {
-            h1 {
-                font-size: 6vw;
-            }
-
-            .message {
-                font-size: 4vw;
-            }
-
-            #endButton {
-                font-size: 4vw;
-                padding: 10px 20px;
-            }
+            h1 { font-size: 6vw; }
+            .message { font-size: 4vw; }
+            #endButton { font-size: 4vw; }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Puissance 4 - Joueur vs Ordinateur</h1>
-    <div class="message">À vous de jouer !</div>
-    <div class="grid" id="grid"></div>
+<h1>Puissance 4 - Joueur vs Ordinateur</h1>
+<div class="message">À vous de jouer !</div>
+<div class="grid" id="grid"></div>
 
-    <!-- Bouton visible uniquement à la fin -->
-    <button id="endButton" onclick="goToIndex()">Retour au travail ! </button>
+<button id="endButton" onclick="goToIndex()">Retour au travail !</button>
 
-    <script>
-        const ROWS = 6;
-        const COLUMNS = 7;
-        const grid = document.getElementById("grid");
-        const message = document.querySelector(".message");
-        const endButton = document.getElementById("endButton");
+<script>
+    const ROWS = 6;
+    const COLUMNS = 7;
+    const grid = document.getElementById("grid");
+    const message = document.querySelector(".message");
+    const endButton = document.getElementById("endButton");
 
-        let board = [];
-        let currentPlayer = "red";
+    let board = [];
+    let currentPlayer = "red";
 
-        function createBoard() {
-            grid.innerHTML = "";
-            board = Array.from({ length: ROWS }, () => Array(COLUMNS).fill(null));
+    function createBoard() {
+        grid.innerHTML = "";
+        board = Array.from({ length: ROWS }, () => Array(COLUMNS).fill(null));
 
-            for (let row = 0; row < ROWS; row++) {
-                for (let col = 0; col < COLUMNS; col++) {
-                    const cell = document.createElement("div");
-                    cell.classList.add("cell");
-                    cell.dataset.row = row;
-                    cell.dataset.col = col;
-                    cell.addEventListener("click", handleCellClick);
-                    grid.appendChild(cell);
-                }
+        for (let row = 0; row < ROWS; row++) {
+            for (let col = 0; col < COLUMNS; col++) {
+                const cell = document.createElement("div");
+                cell.classList.add("cell");
+                cell.dataset.row = row;
+                cell.dataset.col = col;
+                cell.addEventListener("click", handleCellClick);
+                grid.appendChild(cell);
             }
         }
+    }
 
-        function handleCellClick(e) {
-            if (currentPlayer !== "red") return;
+    function handleCellClick(e) {
+        if (currentPlayer !== "red") return;
 
-            const col = parseInt(e.target.dataset.col);
+        const col = parseInt(e.target.dataset.col);
 
-            if (placeToken(col, "red")) {
-                if (checkWin("red")) {
-                    message.textContent = "Vous avez gagné ! 🎉";
-                    endGame();
-                    return;
-                }
-
-                currentPlayer = "yellow";
-                message.textContent = "Tour de l'ordinateur...";
-                setTimeout(computerTurn, 800);
+        if (placeToken(col, "red")) {
+            if (checkWin("red")) {
+                message.textContent = "Vous avez gagné 🎉";
+                endGame();
+                return;
             }
+            currentPlayer = "yellow";
+            message.textContent = "Tour de l'ordinateur...";
+            setTimeout(computerTurn, 700);
         }
+    }
 
-        function computerTurn() {
-            let col;
-            do {
-                col = Math.floor(Math.random() * COLUMNS);
-            } while (!canPlaceToken(col));
+    // 🧠 IA améliorée
+    function computerTurn() {
 
-            if (placeToken(col, "yellow")) {
+        // 1️⃣ Gagner si possible
+        for (let col = 0; col < COLUMNS; col++) {
+            if (canPlaceToken(col)) {
+                const row = getNextRow(col);
+                board[row][col] = "yellow";
                 if (checkWin("yellow")) {
+                    updateBoard();
                     message.textContent = "L'ordinateur a gagné 🤖";
                     endGame();
                     return;
                 }
-
-                currentPlayer = "red";
-                message.textContent = "À vous de jouer !";
+                board[row][col] = null;
             }
         }
 
-        function canPlaceToken(col) {
-            return board[0][col] === null;
-        }
-
-        function placeToken(col, color) {
-            for (let row = ROWS - 1; row >= 0; row--) {
-                if (!board[row][col]) {
-                    board[row][col] = color;
+        // 2️⃣ Bloquer le joueur
+        for (let col = 0; col < COLUMNS; col++) {
+            if (canPlaceToken(col)) {
+                const row = getNextRow(col);
+                board[row][col] = "red";
+                if (checkWin("red")) {
+                    board[row][col] = "yellow";
                     updateBoard();
-                    return true;
+                    currentPlayer = "red";
+                    message.textContent = "À vous de jouer !";
+                    return;
+                }
+                board[row][col] = null;
+            }
+        }
+
+        // 3️⃣ Jouer au centre
+        const center = Math.floor(COLUMNS / 2);
+        if (canPlaceToken(center)) {
+            placeToken(center, "yellow");
+            currentPlayer = "red";
+            message.textContent = "À vous de jouer !";
+            return;
+        }
+
+        // 4️⃣ Colonne valide aléatoire
+        let validCols = [];
+        for (let col = 0; col < COLUMNS; col++) {
+            if (canPlaceToken(col)) validCols.push(col);
+        }
+
+        const col = validCols[Math.floor(Math.random() * validCols.length)];
+        placeToken(col, "yellow");
+        currentPlayer = "red";
+        message.textContent = "À vous de jouer !";
+    }
+
+    function getNextRow(col) {
+        for (let row = ROWS - 1; row >= 0; row--) {
+            if (!board[row][col]) return row;
+        }
+        return -1;
+    }
+
+    function canPlaceToken(col) {
+        return board[0][col] === null;
+    }
+
+    function placeToken(col, color) {
+        for (let row = ROWS - 1; row >= 0; row--) {
+            if (!board[row][col]) {
+                board[row][col] = color;
+                updateBoard();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function updateBoard() {
+        for (let row = 0; row < ROWS; row++) {
+            for (let col = 0; col < COLUMNS; col++) {
+                const cell = document.querySelector(
+                    `.cell[data-row="${row}"][data-col="${col}"]`
+                );
+                cell.classList.remove("red", "yellow");
+                if (board[row][col]) {
+                    cell.classList.add(board[row][col]);
                 }
             }
-            return false;
         }
+    }
 
-        function updateBoard() {
-            for (let row = 0; row < ROWS; row++) {
-                for (let col = 0; col < COLUMNS; col++) {
-                    const cell = document.querySelector(
-                        `.cell[data-row="${row}"][data-col="${col}"]`
-                    );
-                    cell.classList.remove("red", "yellow");
-                    if (board[row][col]) {
-                        cell.classList.add(board[row][col]);
-                    }
+    function checkWin(color) {
+        return (
+            checkDirection(color, 1, 0) ||
+            checkDirection(color, 0, 1) ||
+            checkDirection(color, 1, 1) ||
+            checkDirection(color, 1, -1)
+        );
+    }
+
+    function checkDirection(color, rDir, cDir) {
+        for (let r = 0; r < ROWS; r++) {
+            for (let c = 0; c < COLUMNS; c++) {
+                let count = 0;
+                let rr = r;
+                let cc = c;
+                while (
+                    rr >= 0 && rr < ROWS &&
+                    cc >= 0 && cc < COLUMNS &&
+                    board[rr][cc] === color
+                ) {
+                    count++;
+                    rr += rDir;
+                    cc += cDir;
                 }
+                if (count >= 4) return true;
             }
         }
+        return false;
+    }
 
-        function checkWin(color) {
-            return (
-                checkDirection(color, 1, 0) ||
-                checkDirection(color, 0, 1) ||
-                checkDirection(color, 1, 1) ||
-                checkDirection(color, 1, -1)
-            );
-        }
+    function endGame() {
+        grid.querySelectorAll(".cell").forEach(cell =>
+            cell.removeEventListener("click", handleCellClick)
+        );
+        endButton.style.display = "block";
+    }
 
-        function checkDirection(color, rowDir, colDir) {
-            for (let row = 0; row < ROWS; row++) {
-                for (let col = 0; col < COLUMNS; col++) {
-                    if (board[row][col] === color) {
-                        if (countConsecutive(row, col, rowDir, colDir, color) >= 4) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
+    function goToIndex() {
+        window.location.href = "index.html";
+    }
 
-        function countConsecutive(row, col, rowDir, colDir, color) {
-            let count = 0;
-            let r = row;
-            let c = col;
-
-            while (
-                r >= 0 && r < ROWS &&
-                c >= 0 && c < COLUMNS &&
-                board[r][c] === color
-            ) {
-                count++;
-                r += rowDir;
-                c += colDir;
-            }
-            return count;
-        }
-
-        function endGame() {
-            grid.querySelectorAll(".cell").forEach(cell => {
-                cell.removeEventListener("click", handleCellClick);
-            });
-
-            endButton.style.display = "block";
-        }
-
-        function goToIndex() {
-            window.location.href = "index.html";
-        }
-
-        createBoard();
-    </script>
+    createBoard();
+</script>
 
 </body>
 </html>
-
